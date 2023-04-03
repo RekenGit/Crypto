@@ -1,0 +1,11 @@
+F:\S.U.R.O\c#\Crypto\Crypto\bin\Debug\Crypto.exe.config
+F:\S.U.R.O\c#\Crypto\Crypto\bin\Debug\Crypto.exe
+F:\S.U.R.O\c#\Crypto\Crypto\bin\Debug\Crypto.pdb
+F:\S.U.R.O\c#\Crypto\Crypto\obj\Debug\Crypto.Form1.resources
+F:\S.U.R.O\c#\Crypto\Crypto\obj\Debug\Crypto.Properties.Resources.resources
+F:\S.U.R.O\c#\Crypto\Crypto\obj\Debug\Crypto.csproj.GenerateResource.cache
+F:\S.U.R.O\c#\Crypto\Crypto\obj\Debug\Crypto.csproj.CoreCompileInputs.cache
+F:\S.U.R.O\c#\Crypto\Crypto\obj\Debug\Crypto.exe
+F:\S.U.R.O\c#\Crypto\Crypto\obj\Debug\Crypto.pdb
+F:\S.U.R.O\c#\Crypto\Crypto\obj\Debug\Crypto.csproj.AssemblyReference.cache
+F:\S.U.R.O\c#\Crypto\Crypto\obj\Debug\Crypto.csproj.SuggestedBindingRedirects.cache
