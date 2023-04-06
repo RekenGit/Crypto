@@ -105,7 +105,7 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(144, 150);
             this.checkedListBox1.TabIndex = 3;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.CheckedListBox1_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -123,7 +123,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Decrypt";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // checkedListBox2
             // 
@@ -148,7 +148,7 @@
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.Size = new System.Drawing.Size(144, 150);
             this.checkedListBox2.TabIndex = 6;
-            this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.checkedListBox2_SelectedIndexChanged);
+            this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.CheckedListBox2_SelectedIndexChanged);
             // 
             // label2
             // 
