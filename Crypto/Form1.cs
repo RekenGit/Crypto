@@ -15,8 +15,6 @@ namespace Crypto
     {
         int CheckBox1 = 0, CheckBox2 = 0;
         string Binary, Input;
-        bool stop;
-
         public Form1()
         {
             InitializeComponent();
@@ -45,128 +43,65 @@ namespace Crypto
         {
             Input = textBox1.Text;
             textBox2.Text = Binary = "";
-            stop = false;
             BaseLang firstLang = new BaseLang(), secondLang = new BaseLang();
             switch (CheckBox1) 
             {
                 case 0: firstLang = new BaseLang(Bin, 2); break;
-                case 1: firstLang = new BaseLang(Oct, 8); break;
-                case 2: firstLang = new BaseLang(Cro, 8); break;
-                case 3: firstLang = new BaseLang(Cry, 8); break;
-                case 4: DecToBin(); break;
-                case 5: firstLang = new BaseLang(Hex, 16); break;
-                case 6: firstLang = new BaseLang(Geo, 32); break;
-                case 7: firstLang = new BaseLang(Tet, 64, false); break;
-                case 8: firstLang = new BaseLang(Key, 64); break;
+                case 1: firstLang = new BaseLang(Qua, 4); break;
+                case 2: firstLang = new BaseLang(Oct, 8); break;
+                case 3: firstLang = new BaseLang(Cro, 8); break;
+                case 4: firstLang = new BaseLang(Cry, 8); break;
+                case 5: firstLang = new BaseLang(null, 10); break;
+                case 6: firstLang = new BaseLang(Hex, 16); break;
+                case 7: firstLang = new BaseLang(Duo, 32); break;
+                case 8: firstLang = new BaseLang(Geo, 32); break;
+                case 9: firstLang = new BaseLang(Tet, 64, false); break;
+                case 10: firstLang = new BaseLang(Key, 64); break;
             }
-            if (firstLang.IsNotNull())
+            Binary = firstLang.DecryptToBinary(Input);
+            if (!String.IsNullOrEmpty(firstLang.ErrorMessage)) 
             {
-                Binary = firstLang.DecryptToBinary(Input);
-                if (!String.IsNullOrEmpty(firstLang.ErrorMessage)) 
-                {
-                    textBox2.Text = firstLang.ErrorMessage;
-                    stop = true;
-                }
-            } 
-            if (!stop)
-            {
-                switch (CheckBox2)
-                {
-                    case 0: textBox2.Text = Binary; break;
-                    case 1: secondLang = new BaseLang(Oct, 8); break;
-                    case 2: secondLang = new BaseLang(Cro, 8); break;
-                    case 3: secondLang = new BaseLang(Cry, 8); break;
-                    case 4: BinToDec(); break;
-                    case 5: secondLang = new BaseLang(Hex, 16); break;
-                    case 6: secondLang = new BaseLang(Geo, 32); break;
-                    case 7: secondLang = new BaseLang(Tet, 64); break;
-                    case 8: secondLang = new BaseLang(Key, 64); break;
-                }
+                textBox2.Text = firstLang.ErrorMessage;
+                return;
             }
-            if (secondLang.IsNotNull()) textBox2.Text = secondLang.EncryptFromBinary(Binary);
+            switch (CheckBox2)
+            {
+                case 0: textBox2.Text = Binary; break;
+                case 1: secondLang = new BaseLang(Qua, 4); break;
+                case 2: secondLang = new BaseLang(Oct, 8); break;
+                case 3: secondLang = new BaseLang(Cro, 8); break;
+                case 4: secondLang = new BaseLang(Cry, 8); break;
+                case 5: secondLang = new BaseLang(null, 10); break;
+                case 6: secondLang = new BaseLang(Hex, 16); break;
+                case 7: secondLang = new BaseLang(Duo, 32); break;
+                case 8: secondLang = new BaseLang(Geo, 32); break;
+                case 9: secondLang = new BaseLang(Tet, 64); break;
+                case 10: secondLang = new BaseLang(Key, 64); break;
+            }
+            textBox2.Text = secondLang.EncryptFromBinary(Binary);
         }
         /* 
-            (2) Binarny           - Bin
+            (2) Binary            - Bin
+            (4) Quaternary        - Qua
             (8) Octal             - Oct
             (8) Crypto Old        - Cro
             (8) Crypto            - Cry
             (10) Decimal          - Dec
             (16) Hexadecimal      - Hex
+            (32) Duotrigesimal    - Duo
             (32) Geohash          - Geo
             (64) Tetrasexagesimal - Tet
             (64) KeyBoard         - Key
         */
-        readonly string[] Bin = {"0", "1"};
-        readonly string[] Oct = {"0", "1", "2", "3", "4", "5", "6", "7"};
-        readonly string[] Cro = {"`", ",", ".", "|", "'", "\"", "!", "-"};
-        readonly string[] Cry = {".", ":", ",", ";", "!", "|", "'", "`"};
-        readonly string[] Hex = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
-        readonly string[] Geo = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "B", "C", "D", "E", "F", "G", "H", "J", "K", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-        readonly string[] Tet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S","T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m","n", "o", "p", "q", "r", "s","t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3","4", "5", "6", "7", "8", "9", "+", "/"};
-        readonly string[] Key = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9","A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "W", "Z", "Q", "V", "X", "Y", ".", ",", "_", "!", "?", "%", "(", ")", "[", "]", "{", "}", "<", ">", "@", "#", "/", "\\", "*", "+", "-", "=", "^", ":", ";", "\"", "'", " "};
-        void DecToBin() 
-        {
-            int maxNumber = 8, tempNumber = 0;
-            int divideCount = Input.Length % maxNumber == 0 ? Input.Length / maxNumber : Convert.ToInt32(Math.Round(Input.Length / maxNumber * 1.0) + 1);
-            long[] numbers = new long[divideCount];
-            for (int i = 0; i < divideCount; i++)
-            {
-                if (i == divideCount - 1) numbers[i] = Convert.ToInt64(Input.Substring(tempNumber, Input.Length - maxNumber * (divideCount - 1)));
-                else numbers[i] = Convert.ToInt64(Input.Substring(tempNumber, maxNumber));
-                tempNumber += maxNumber;
-            }
-            while (numbers[divideCount - 1] < 1)
-            {
-                foreach (long item in numbers)
-                {
-
-                }
-            }
-
-            /*if (Inp.Length <= 10)
-            {
-                try
-                {
-                    long liczba = 0;
-                    if (Inp == "0") Binary = "0";
-                    else liczba = long.Parse(Inp);
-                    while (liczba > 0)
-                    {
-                        if (liczba % 2 == 0) Binary = 0 + Binary;
-                        else
-                        {
-                            liczba--;
-                            Binary = 1 + Binary;
-                        }
-                        liczba /= 2;
-                    }
-                }
-                catch
-                {
-                    textBox2.Text = "Tylko te znaki: \r\n0 1 2 3 4 5 6 7 8 9"; 
-                    stop = true;
-                }
-            } 
-            else
-            {
-                textBox2.Text = "Liczba może mieć maksymalnie 10 znaków, takie są ograniczenia w systemie dziesiętnym";
-                stop = true;
-            }*/
-        }
-        void BinToDec()
-        {
-            long wynik = 0;
-            for (int i = 0; i < Binary.Length; i++)
-            {
-                if (Binary[i] == '0') wynik *= 2;
-                else if (Binary[i] == '1') wynik = wynik * 2 + 1;
-                else
-                {
-                    textBox2.Text += "Tylko znaki: \r\n0 1";
-                    stop = true;
-                }
-            }
-            textBox2.Text = wynik.ToString();
-        }
+        readonly static string[] Bin = {"0", "1"};
+        readonly static string[] Qua = {"0", "1", "2", "3"};
+        readonly static string[] Oct = {"0", "1", "2", "3", "4", "5", "6", "7"};
+        readonly static string[] Cro = {"`", ",", ".", "|", "'", "\"", "!", "-"};
+        readonly static string[] Cry = {".", ":", ",", ";", "!", "|", "'", "`"};
+        readonly static string[] Hex = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
+        readonly static string[] Duo = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "2", "3", "4", "5", "6", "7"};
+        readonly static string[] Geo = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "B", "C", "D", "E", "F", "G", "H", "J", "K", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        readonly static string[] Tet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S","T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m","n", "o", "p", "q", "r", "s","t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3","4", "5", "6", "7", "8", "9", "+", "/"};
+        readonly static string[] Key = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9","A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "W", "Z", "Q", "V", "X", "Y", ".", ",", "_", "!", "?", "%", "(", ")", "[", "]", "{", "}", "<", ">", "@", "#", "/", "\\", "*", "+", "-", "=", "^", ":", ";", "\"", "'", " "};
     }
 }

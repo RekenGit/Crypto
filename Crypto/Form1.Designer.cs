@@ -93,11 +93,13 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Items.AddRange(new object[] {
             "2",
+            "4",
             "8",
             "8 - Crypto (old)",
             "8 - Crypto",
             "10",
             "16",
+            "32",
             "32 - GeoHash",
             "64",
             "64 - KeyBoard"});
@@ -136,11 +138,13 @@
             this.checkedListBox2.FormattingEnabled = true;
             this.checkedListBox2.Items.AddRange(new object[] {
             "2",
+            "4",
             "8",
             "8 - Crypto (old)",
             "8 - Crypto",
             "10",
             "16",
+            "32",
             "32 - GeoHash",
             "64",
             "64 - KeyBoard"});
